@@ -18,6 +18,7 @@ export const UserForm = ({
         <div>
           <label htmlFor="name">Name</label>
           <input
+            id="name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -26,6 +27,7 @@ export const UserForm = ({
         <div>
           <label htmlFor="email">Email</label>
           <input
+            id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

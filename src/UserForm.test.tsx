@@ -17,7 +17,6 @@ describe("testing form", () => {
     expect(button).toBeDefined();
     expect(inputs).toHaveLength(2);
   });
-
   it("Should Calls onUserAdd when the form is submitted", async () => {
     const mock = vi.fn();
 

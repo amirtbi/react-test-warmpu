@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import user from "@testing-library/user-event";
 import { UserForm } from "./UserForm";
@@ -19,13 +19,9 @@ describe("testing form", () => {
   });
 
   it("Should Calls onUserAdd when the form is submitted", async () => {
-    const argList = [];
-    const callback = (...args: any) => {
-      console.log("Args", args);
-      argList.push(args);
-    };
+    const mock = vi.fn();
 
-    render(<UserForm onUserAdd={callback} />);
+    render(<UserForm onUserAdd={mock} />);
     const [nameInput, emailInput] = screen.getAllByRole("textbox");
 
     // simulate user typing on email and name input
@@ -40,7 +36,7 @@ describe("testing form", () => {
 
     await user.click(button);
 
-    expect(argList).toHaveLength(1);
-    expect(argList[0][0]).toEqual({ name: "amir", email: "amir@gmail.com" });
+    expect(mock).toBeCalled();
+    expect(mock).toBeCalledWith({ name: "amir", email: "amir@gmail.com" });
   });
 });

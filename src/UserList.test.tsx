@@ -15,4 +15,19 @@ describe("userlist component test", () => {
     const rows = container.querySelectorAll("tbody tr");
     expect(rows).toHaveLength(2);
   });
+
+  it("render the email and name of each user", () => {
+    const users = [
+      { name: "amir", email: "amir@gmail.com" },
+      { name: "hosein", email: "test@test.com" },
+    ];
+    render(<UserLists users={users} />);
+
+    for (const user of users) {
+      const name = screen.getByRole("cell", { name: user.name });
+      const email = screen.getByRole("cell", { name: user.email });
+      expect(name).toBeDefined();
+      expect(email).toBeDefined();
+    }
+  });
 });

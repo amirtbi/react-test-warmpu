@@ -11,6 +11,8 @@ export const UserForm = ({
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     onUserAdd({ name, email });
+    setEmail("");
+    setName("");
   };
   return (
     <>

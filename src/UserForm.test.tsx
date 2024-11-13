@@ -17,6 +17,7 @@ describe("testing form", () => {
     expect(button).toBeDefined();
     expect(inputs).toHaveLength(2);
   });
+
   it("Should Calls onUserAdd when the form is submitted", async () => {
     const mock = vi.fn();
 
@@ -39,5 +40,31 @@ describe("testing form", () => {
 
     expect(mock).toBeCalled();
     expect(mock).toBeCalledWith({ name: "amir", email: "amir@gmail.com" });
+  });
+
+  it("Should form fields be empty after form submitting", async () => {
+    const mock = vi.fn();
+    render(<UserForm onUserAdd={mock} />);
+
+    const nameInput = screen.getByRole("textbox", {
+      name: /name/i,
+    }) as HTMLInputElement;
+
+    const emailInput = screen.getByRole("textbox", {
+      name: /email/i,
+    }) as HTMLInputElement;
+
+    const button = screen.getByRole("button");
+
+    await user.click(nameInput);
+    await user.keyboard("amir");
+
+    await user.click(emailInput);
+    await user.keyboard("amir@test.com");
+
+    await user.click(button);
+
+    expect(nameInput.value).toBe("");
+    expect(emailInput.value).toBe("");
   });
 });

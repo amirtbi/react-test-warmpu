@@ -13,6 +13,7 @@ function App() {
     <>
       <div>
         <UserForm onUserAdd={onUserAdd} />
+        <hr />
         <UserLists users={users} />
       </div>
     </>

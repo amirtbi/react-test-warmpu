@@ -8,12 +8,11 @@ describe("userlist component test", () => {
       { name: "amir", email: "amir@gmail.com" },
       { name: "hosein", email: "test@test.com" },
     ];
-    render(<UserLists users={users} />);
+    const { container } = render(<UserLists users={users} />);
 
     // screen.logTestingPlaygroundURL();
 
-    const rows = within(screen.getByTestId("users")).getAllByRole("row");
-
+    const rows = container.querySelectorAll("tbody tr");
     expect(rows).toHaveLength(2);
   });
 });

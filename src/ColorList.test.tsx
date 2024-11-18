@@ -47,4 +47,22 @@ describe("color list", () => {
 
     expect(errorThrown).toBe(true);
   });
+
+  it("getAllBy, queryAllBy, findAllBy", async () => {
+    render(<ColorList />);
+
+    expect(() => screen.getAllByRole("textbox")).toThrow(); // throw error
+
+    expect(screen.queryAllByRole("textbox")); // return []
+
+    let throwError = false;
+
+    try {
+      await screen.findAllByRole("textbox"); // throw error
+    } catch {
+      throwError = true;
+    }
+
+    expect(throwError).toBe(true);
+  });
 });

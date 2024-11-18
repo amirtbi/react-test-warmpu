@@ -1,22 +1,39 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
+import { DropDown } from "./DropDown";
 
 export const UserForm = ({
   onUserAdd,
 }: {
-  onUserAdd: (user: { name: string; email: string }) => void;
+  onUserAdd: (user: {
+    name: string;
+    email: string;
+    method: string | undefined;
+  }) => void;
 }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const dropDownRef = useRef<HTMLSelectElement>(null);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    onUserAdd({ name, email });
+    onUserAdd({ name, email, method: dropDownRef.current?.value });
     setEmail("");
     setName("");
   };
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label>Method</label>
+          <DropDown
+            ref={dropDownRef}
+            options={[
+              { value: "", title: "all" },
+              { value: "get", title: "get" },
+              { value: "post", title: "post" },
+            ]}
+          />
+        </div>
         <div>
           <label htmlFor="name">Name</label>
           <input

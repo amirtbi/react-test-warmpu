@@ -1,13 +1,14 @@
 export const UserLists = ({
   users,
 }: {
-  users: { name: string; email: string }[];
+  users: { name: string; email: string; method: string | undefined }[];
 }) => {
   const renderedUsers = () => {
     return users.map((user) => (
       <tr key={user.email}>
         <td>{user.name}</td>
         <td>{user.email}</td>
+        <td>{user.method}</td>
       </tr>
     ));
   };
@@ -19,6 +20,7 @@ export const UserLists = ({
           <tr>
             <td>Name</td>
             <td>Email</td>
+            <td>Method</td>
           </tr>
         </thead>
         <tbody data-testid="users">{renderedUsers()}</tbody>

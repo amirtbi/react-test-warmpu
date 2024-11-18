@@ -4,9 +4,15 @@ import { UserForm } from "./UserForm";
 import { UserLists } from "./UserLists";
 
 function App() {
-  const [users, setUsers] = useState<{ name: string; email: string }[]>([]);
+  const [users, setUsers] = useState<
+    { name: string; email: string; method: string | undefined }[]
+  >([]);
 
-  const onUserAdd = (user: { name: string; email: string }) => {
+  const onUserAdd = (user: {
+    name: string;
+    email: string;
+    method: string | undefined;
+  }) => {
     setUsers([...users, user]);
   };
   return (

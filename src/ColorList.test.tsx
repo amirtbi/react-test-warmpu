@@ -65,4 +65,14 @@ describe("color list", () => {
 
     expect(throwError).toBe(true);
   });
+
+  it("getAllBy, queryAllBy, findAllBy for list items", async () => {
+    render(<ColorList />);
+
+    expect(screen.getAllByRole("listitem")).toHaveLength(3);
+
+    expect(screen.queryAllByRole("listitem")).toHaveLength(3);
+
+    expect(await screen.findAllByRole("listitem")).toHaveLength(3);
+  });
 });

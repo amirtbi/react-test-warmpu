@@ -75,4 +75,19 @@ describe("color list", () => {
 
     expect(await screen.findAllByRole("listitem")).toHaveLength(3);
   });
+
+  it("it should prove an element exists by getBy", () => {
+    render(<ColorList />);
+
+    const element = screen.getByRole("list");
+    expect(element).toBeDefined();
+  });
+
+  it("it should proves an element does not exist", () => {
+    render(<ColorList />);
+
+    const element = screen.queryByRole("textbox");
+
+    expect(element).toBeNull();
+  });
 });
